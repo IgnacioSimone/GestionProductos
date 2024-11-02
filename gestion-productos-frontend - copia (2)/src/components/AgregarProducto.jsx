@@ -90,12 +90,14 @@ function AgregarProducto({ onProductoAgregado }) {
           variant="contained" 
           sx={{
             color: '#ffffff',
-            backgroundColor: '#1976d2',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)', // Fondo negro con 70% de transparencia
             '&:hover': {
-              backgroundColor: '#115293',
-              color:'#ffffff',
+              backgroundColor: 'rgba(0, 0, 0, 0.9)', // Fondo más oscuro al hacer hover
+              boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)', // Sombra al hacer hover
+              transform: 'scale(1.05)', // Escala ligera para dar efecto de expansión
             },
-            mt: 2,
+            marginRight: 1,
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease', // Suaviza la animación
           }}
           fullWidth
         >

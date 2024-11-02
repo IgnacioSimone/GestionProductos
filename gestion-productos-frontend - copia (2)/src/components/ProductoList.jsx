@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EditarProducto from './EditarProducto';
-import AgregarProducto from './AgregarProducto'; // Importa AgregarProducto aquí
-import { List, ListItem, ListItemText, Button, Typography, Box, Paper } from '@mui/material';
+import AgregarProducto from './AgregarProducto';
+import { Grid, Card, CardContent, CardActions, IconButton, Typography, Box, TextField, InputAdornment } from '@mui/material';
+import { Edit, Delete, Inventory2, MonetizationOn, Search } from '@mui/icons-material';
 
 function ProductoList() {
   const [productos, setProductos] = useState([]);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+  const [busqueda, setBusqueda] = useState("");
 
   useEffect(() => {
     cargarProductos();
@@ -30,89 +32,114 @@ function ProductoList() {
 
   const handleEditSuccess = () => {
     setProductoSeleccionado(null);
-    cargarProductos(); // Recargar la lista después de la edición
+    cargarProductos();
   };
 
   const handleAgregarProducto = () => {
-    cargarProductos(); // Recargar la lista cuando se agrega un nuevo producto
+    cargarProductos();
   };
+
+  const productosFiltrados = productos.filter((producto) =>
+    producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
+  );
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 5 }}>
-      <AgregarProducto onProductoAgregado={handleAgregarProducto} /> {/* Pasamos la función aquí */}
-<br></br>
+      <AgregarProducto onProductoAgregado={handleAgregarProducto} />
       <Typography variant="h4" gutterBottom align="center">
+        <br /><br />
         Lista de Productos
       </Typography>
-      <List>
-        {productos.map((producto) => (
-          <ListItem 
-            key={producto.id} 
-            sx={{
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'center',
-              paddingY: 2,
-            }}
-          >
-            <Paper
+      <br />
+
+      {/* Barra de búsqueda con ícono de lupa dentro del campo */}
+      <TextField
+        label="Buscar Producto"
+        variant="outlined"
+        fullWidth
+        sx={{ maxWidth: 600, mb: 3 }}
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <Search style={{ color: '#454545' }} /> {/* Ajusta el color del ícono */}
+            </InputAdornment>
+          ),
+        }}
+      />
+      <br />
+
+      <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
+        {productosFiltrados.map((producto) => (
+          <Grid item key={producto.id} xs={12} sm={6} md={4}>
+            <Card
               sx={{
-                padding: 2,
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: 6,
-                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.2)',
-                flexGrow: 1,
-                marginRight: 2,
+                maxWidth: 345,
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                color: '#fff',
+                borderRadius: 3,
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.05)',
+                  boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.4)',
+                },
               }}
             >
-              <ListItemText 
-                primary={producto.nombre} 
-                secondary={`$${producto.precio} (Stock: ${producto.stock})`} 
-                primaryTypographyProps={{
-                  fontSize: '1.4rem',
-                  fontWeight: 'bold',
-                  color: '#ffffff',
-                }}
-                secondaryTypographyProps={{
-                  fontSize: '1.1rem',
-                  fontWeight: 'bold',
-                  color: '#000080',
-                }}
-              />
-            </Paper>
-            
-            <Box>
-              <Button 
-                variant="contained" 
-                onClick={() => setProductoSeleccionado(producto)}
-                sx={{
-                  color: '#ffffff',
-                  backgroundColor: '#1976d2',
-                  '&:hover': {
-                    backgroundColor: '#115293',
-                  },
-                  marginRight: 1,
-                }}
-              >
-                Editar
-              </Button>
-              <Button 
-                variant="contained" 
-                onClick={() => eliminarProducto(producto.id)}
-                sx={{
-                  color: '#ffffff',
-                  backgroundColor: '#d32f2f',
-                  '&:hover': {
-                    backgroundColor: '#9a0007',
-                  },
-                }}
-              >
-                Eliminar
-              </Button>
-            </Box>
-          </ListItem>
+              <CardContent>
+                <Typography variant="h6" component="div" gutterBottom>
+                  {producto.nombre}
+                </Typography>
+                <Box display="flex" alignItems="center" mb={1}>
+                  <MonetizationOn sx={{ color: '#21be12', mr: 1 }} />
+                  <Typography variant="body2" color="inherit">
+                    ${producto.precio.toFixed(2)}
+                  </Typography>
+                </Box>
+                <Box display="flex" alignItems="center">
+                  <Inventory2 sx={{ color: '#8d8d8d', mr: 1 }} />
+                  <Typography variant="body2" color="inherit">
+                    Stock: {producto.stock}
+                  </Typography>
+                </Box>
+              </CardContent>
+              <CardActions>
+                <IconButton 
+                  onClick={() => setProductoSeleccionado(producto)}
+                  sx={{
+                    color: '#1976d2',
+                    '&:hover': { 
+                      color: '#115293',
+                      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                      transform: 'scale(1.1)',
+                      boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
+                    },
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  }}
+                >
+                  <Edit />
+                </IconButton>
+                <IconButton 
+                  onClick={() => eliminarProducto(producto.id)}
+                  sx={{
+                    color: '#d32f2f',
+                    '&:hover': { 
+                      color: '#9a0007',
+                      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                      transform: 'scale(1.1)',
+                      boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
+                    },
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  }}
+                >
+                  <Delete />
+                </IconButton>
+              </CardActions>
+            </Card>
+          </Grid>
         ))}
-      </List>
+      </Grid>
 
       {productoSeleccionado && (
         <EditarProducto
