@@ -1,0 +1,4 @@
+<header [ngClass]="['position-fixed','z-index-3', 'width-100vw', 'bg-dark', 'padding-md', 'flex', 'items-center', currentUrl === '/lista' ? 'justify-center' : 'justify-between']">
+    <button *ngIf="buttonBack" class="btn" (click)="goBack()">Volver</button>
+    <p class="absolute-center">{{ title }}</p>
+</header>

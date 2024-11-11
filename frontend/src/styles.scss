@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+input{
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+input:focus-visible{
+    outline: none;
+}
+label{
+    text-transform: capitalize;
+}
+
+*{  font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;}
