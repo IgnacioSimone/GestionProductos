@@ -1,20 +1,23 @@
 <section class="flex flex-column gap-md justify-center items-center padding-x-md padding-top-xl padding-bottom-md">
     <button class="btn" (click)="addProduct()">Agregar Producto</button>
-    <div *ngFor="let producto of listaProductos" class="bg-darker radius-md flex@md justify-between@md width-50%@md padding-md">
-        <img [src]="producto.image" alt="" class="width-30%@md radius-md">
-        <div class="flex flex-column gap-sm padding-sm">
-            <p>Nombre: {{ producto.nombre }}</p>
-            <p>Precio: ${{ producto.precio }}</p>
-            <p>Stock: {{ producto.stock }} un.</p>
-            <p>Descripción: {{ producto.description }}</p>
-        </div>
-        
-        <div class="flex flex-column gap-sm padding-sm">
-            <button class="btn" (click)="eliminar(producto)">Eliminar</button>
-            <button class="btn" (click)="editar(producto)">Editar</button>
-            <button class="btn" (click)="ver(producto)">Ver</button>
+    <div class="flex flex-wrap gap-md justify-center">
+        <div *ngFor="let producto of listaProductos" class="bg-darker radius-md flex@md justify-between@md padding-md card">
+            <img [src]="producto.image" alt="" class="width-30%@md radius-md">
+            <div class="flex flex-column gap-sm padding-sm">
+                <p>Nombre: {{ producto.nombre }}</p>
+                <p>Precio: ${{ producto.precio }}</p>
+                <p>Stock: {{ producto.stock }} un.</p>
+                <p>Descripción: {{ producto.description }}</p>
+            </div>
+            
+            <div class="flex flex-column gap-sm padding-sm">
+                <button class="btn" (click)="eliminar(producto)">Eliminar</button>
+                <button class="btn" (click)="editar(producto)">Editar</button>
+                <button class="btn" (click)="ver(producto)">Ver</button>
+            </div>
         </div>
     </div>
+
     <p *ngIf="empty">No existen productos en la base de datos</p>
     <div *ngIf="modalDeleted" class="popup padding-x-md padding-x-xxxxl@md" id="popup">
         <div class="popup-content">

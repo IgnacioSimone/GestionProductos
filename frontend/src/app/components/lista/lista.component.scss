@@ -22,3 +22,10 @@
   align-items: center;
   gap: 25px;
 }
+
+@media screen and (min-width:1024px) {
+  .card{
+    width:600px;
+    height: 300px;
+  }
+}
