@@ -42,6 +42,8 @@ public class ProductoController {
             existingProducto.setNombre(producto.getNombre());
             existingProducto.setPrecio(producto.getPrecio());
             existingProducto.setStock(producto.getStock());
+            existingProducto.setDescription(producto.getDescription());
+            existingProducto.setImage(producto.getImage());
             return ResponseEntity.ok(productoService.saveProducto(existingProducto));
         }
         return ResponseEntity.notFound().build();

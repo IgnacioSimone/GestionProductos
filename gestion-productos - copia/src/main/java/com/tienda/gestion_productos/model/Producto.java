@@ -28,6 +28,9 @@ public class Producto {
     @Min(value = 0, message = "El stock debe ser mayor o igual a 0")
     private Integer stock;
 
+    private String description;
+    private String image;
+
     // Getters y Setters
     public Long getId() {
         return id;
@@ -59,5 +62,19 @@ public class Producto {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
     }
 }
