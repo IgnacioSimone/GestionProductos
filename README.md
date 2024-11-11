@@ -26,12 +26,12 @@ Asegúrate de tener las siguientes herramientas instaladas en tu máquina:
 
 1. Navega a la carpeta `frontend`:
 
-   `bash
+   ```bash
    cd frontend
 
 Instala las dependencias del proyecto utilizando npm:
 
-   `bash
+   ``bash
 npm install
 
 Ejecuta la aplicación de Angular en el servidor de desarrollo:
