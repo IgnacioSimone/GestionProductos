@@ -31,12 +31,12 @@ Asegúrate de tener las siguientes herramientas instaladas en tu máquina:
 
 Instala las dependencias del proyecto utilizando npm:
 
-   ``bash
+   ```bash
 npm install
 
 Ejecuta la aplicación de Angular en el servidor de desarrollo:
 
-   `bash
+   ```bash
 npm start
 
 La aplicación estará disponible en http://localhost:4200.
@@ -44,17 +44,17 @@ La aplicación estará disponible en http://localhost:4200.
 2. Levantar el Backend (Spring Boot)
 Navega a la carpeta backend:
 
-   `bash
+   ```bash
 cd backend
 
 Instala las dependencias del proyecto utilizando Maven:
 
-   `bash
+   ```bash
 mvn install
 
 Ejecuta el proyecto Spring Boot:
 
-   `bash
+````bash
 mvn spring-boot:run
 
 El backend se levantará por defecto en http://localhost:8080.
