@@ -13,10 +13,13 @@ import { NgIf } from '@angular/common';
   styleUrl: './editar.component.scss'
 })
 export class EditarComponent {
+
+  pattern = '^[0-9]*$'
+
   editForm:FormGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
-    precio: new FormControl('', Validators.required),
-    stock: new FormControl('', Validators.required),
+    precio: new FormControl(0, [Validators.required, Validators.pattern(this.pattern)]),
+    stock: new FormControl(0, [Validators.required, Validators.pattern(this.pattern)]),
     description: new FormControl(''),
     image: new FormControl('')
   })

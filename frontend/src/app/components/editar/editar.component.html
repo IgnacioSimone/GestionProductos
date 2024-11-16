@@ -1,26 +1,38 @@
- <div class="flex flex-column gap-md height-100vh justify-center items-center padding-x-xl">
- <form class="grid gap-md" [formGroup]="editForm" (ngSubmit)="handleSubmit()">
-  <label for="nombre">nombre</label>  
-  <input type="text" formControlName="nombre" />
-    <div *ngIf="editForm.get('nombre')?.touched && editForm.get('nombre')?.invalid">
-        <small *ngIf="editForm.get('nombre')?.errors?.['required']">El nombre es requerido.</small>
-        <small *ngIf="editForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 2 caracteres.</small>
-        <small *ngIf="editForm.get('nombre')?.errors?.['maxlength']">El nombre no debe superar los 50 caracteres.</small>
-      </div>
-      <label for="precio">precio</label>
-    <input type="text" formControlName="precio" />
-    <div *ngIf="editForm.get('precio')?.touched && editForm.get('precio')?.invalid">
-        <small *ngIf="editForm.get('precio')?.errors?.['required']">El precio es requerido.</small>
-      </div>
-      <label for="stock">stock</label>
-    <input type="text" formControlName="stock" />
-    <div *ngIf="editForm.get('stock')?.touched && editForm.get('stock')?.invalid">
-        <small *ngIf="editForm.get('stock')?.errors?.['required']">El stock es requerido.</small>
-      </div>
-      <label for="stock">Descripción</label>
-      <input type="text" formControlName="description" />
-        <label for="stock">Link imagen</label>
-        <input type="text" formControlName="image" />
-    <button class="btn" type="submit"  [disabled]="editForm.invalid">Submit</button>
-  </form>
+<div class="flex flex-column gap-md height-100vh justify-center items-center padding-x-xl">
+  <form class="grid gap-md" [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <div class="width-100% flex flex-column gap-xxxs">
+      <label for="nombre">Nombre</label>
+      <input type="text" formControlName="nombre" />
+      <div *ngIf="editForm.get('nombre')?.invalid">
+          <small *ngIf="editForm.get('nombre')?.errors?.['required']">El nombre es requerido.</small>
+          <small *ngIf="editForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 2 caracteres.</small>
+          <small *ngIf="editForm.get('nombre')?.errors?.['maxlength']">El nombre no debe superar los 50 caracteres.</small>
+        </div>
+    </div>
+<div class="width-100% flex flex-column gap-xxxs">
+<label for="precio">precio</label>
+<input type="text" formControlName="precio" />
+<div *ngIf="editForm.get('precio')?.invalid">
+    <small *ngIf="editForm.get('precio')?.errors?.['required']">El precio es requerido.</small>
+    <small *ngIf="editForm.get('precio')?.errors?.['pattern']">El precio solo acepta números.</small>
+  </div>
+</div>
+<div class="width-100% flex flex-column gap-xxxs">
+<label for="stock">stock</label>
+<input type="text" formControlName="stock" />
+<div *ngIf="editForm.get('stock')?.invalid">
+    <small *ngIf="editForm.get('stock')?.errors?.['required']">El stock es requerido.</small>
+    <small *ngIf="editForm.get('stock')?.errors?.['pattern']">El stock solo acepta números.</small>
+  </div>
+</div>
+<div class="width-100% flex flex-column gap-xxxs">
+<label for="stock">Descripción</label>
+<input type="text" formControlName="description" />
+</div>
+<div class="width-100% flex flex-column gap-xxxs">
+<label for="stock">Link imagen</label>
+<input type="text" formControlName="image" />
+</div>
+  <button class="btn" type="submit"  [disabled]="editForm.invalid">Submit</button>
+</form>
 </div>
