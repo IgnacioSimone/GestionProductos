@@ -2,6 +2,10 @@
 
 Este proyecto consiste en una aplicación Full Stack que tiene dos componentes principales: un **frontend** desarrollado con **Angular** y un **backend** desarrollado con **Java** usando **Spring Boot**. Ambos servicios deben ser levantados por separado, ya que se ejecutan en diferentes entornos.
 
+## Funcionamiento
+Se muestra una interfaz que permite permite a los usuarios gestionar productos en una tienda. Permite las operaciones básicas de CRUD (Crear, Leer, Actualizar, Eliminar) para productos. También utiliza validaciones para asegurar que los datos sean correctos antes de guardarlos.
+También se permite listar todos los porductos cargados hasta el momento. 
+
 ## Estructura del Proyecto
 
 El proyecto se divide en dos carpetas:
@@ -26,17 +30,17 @@ Asegúrate de tener las siguientes herramientas instaladas en tu máquina:
 
 1. Navega a la carpeta `frontend`:
 
-   ```bash
-   cd frontend
-   ```
+```bash
+cd frontend
+```
 Instala las dependencias del proyecto utilizando npm:
 
-   ```bash
-    npm install
+```bash
+npm install
 ```
 Ejecuta la aplicación de Angular en el servidor de desarrollo:
 
-   ```bash
+```bash
 npm start
 ```
 La aplicación estará disponible en http://localhost:4200.
@@ -44,12 +48,12 @@ La aplicación estará disponible en http://localhost:4200.
 2. Levantar el Backend (Spring Boot)
 Navega a la carpeta backend:
 
-   ```bash
-   cd backend
-   ```
+```bash
+cd backend
+```
 Instala las dependencias del proyecto utilizando Maven:
 
-   ```bash
+```bash
 mvn install
 ```
 Ejecuta el proyecto Spring Boot:
